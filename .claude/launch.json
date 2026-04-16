@@ -1,0 +1,20 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "AP Server (Express + Prisma)",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "cwd": "server",
+      "port": 3001,
+      "autoPort": false
+    },
+    {
+      "name": "AP Client (React + Vite)",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "cwd": "client",
+      "port": 5174
+    }
+  ]
+}

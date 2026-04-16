@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npx prisma:*)",
+      "Bash(npm create:*)",
+      "Bash(./node_modules/.bin/tailwindcss init:*)",
+      "Bash(node node_modules/.bin/tailwindcss init -p)",
+      "Bash(node node_modules/tailwindcss/lib/cli.js init -p)",
+      "Bash(npm run:*)",
+      "Bash(node -e ':*)",
+      "Bash(node src/index.js)",
+      "Bash(curl -s http://localhost:3001/api/dashboard/summary)",
+      "Bash(node -e \"const d=require\\('fs'\\).readFileSync\\('/dev/stdin','utf8'\\); const j=JSON.parse\\(d\\); console.log\\('Outstanding:', j.total_outstanding, '| Overdue:', j.overdue_count, '| Invoices:', j.total_invoices\\)\" kill %1)",
+      "Bash(taskkill /F /IM node.exe)",
+      "Bash(cmd /c \"taskkill /F /IM node.exe\")",
+      "Bash(cmd /c \"taskkill /F /IM node.exe 2>&1\")",
+      "Bash(powershell -Command \"Get-Process node -ErrorAction SilentlyContinue | Stop-Process -Force\")",
+      "Bash(powershell -Command \"netstat -ano | Select-String ':3001|:5173'\")",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(node src/db/seedRequests.js)",
+      "Bash(netstat -ano)",
+      "Bash(findstr :3001)",
+      "Bash(findstr LISTENING)",
+      "Bash(taskkill /PID 30632 /F)",
+      "Bash(cmd /c \"taskkill /PID 30632 /F\")",
+      "Bash(echo \"exit: $?\")",
+      "Bash(cmd /c \"netstat -ano | findstr :3001 | findstr LISTENING\")",
+      "Bash(cmd /c \"netstat -ano | findstr :3001\")",
+      "Bash(cmd /c \"tasklist | findstr node\")",
+      "Bash(cmd /c \"powershell -Command \\\\\"Get-NetTCPConnection -LocalPort 3001 -ErrorAction SilentlyContinue\\\\\"\")",
+      "Bash(cmd /c \"cd \\\\\"C:\\\\Users\\\\tejas.n\\\\Documents\\\\Invoice Automation Flow\\\\server\\\\\" && node src/index.js\")",
+      "Bash(cmd /c \"cd \\\\\"C:\\\\Users\\\\tejas.n\\\\Documents\\\\Invoice Automation Flow\\\\server\\\\\" && npm run dev\")",
+      "Bash(cmd /c \"powershell -Command \\\\\"Test-NetConnection -ComputerName localhost -Port 3001 -WarningAction SilentlyContinue | Select-Object TcpTestSucceeded\\\\\"\")"
+    ]
+  }
+}
