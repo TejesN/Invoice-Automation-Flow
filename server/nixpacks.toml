@@ -5,4 +5,4 @@ nixPkgs = ["nodejs_20"]
 cmds = ["npm install"]
 
 [start]
-cmd = "npx prisma generate && npx prisma db push --accept-data-loss && node src/index.js"
+cmd = "node node_modules/prisma/build/index.js generate && node node_modules/prisma/build/index.js db push --accept-data-loss && node src/index.js"
