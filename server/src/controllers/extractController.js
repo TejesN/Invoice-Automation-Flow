@@ -1,6 +1,10 @@
 const Anthropic = require('@anthropic-ai/sdk');
 
-const client = new Anthropic();
+if (!process.env.ANTHROPIC_API_KEY) {
+  console.warn('WARNING: ANTHROPIC_API_KEY is not set. PDF/image extraction will fail.');
+}
+
+const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 // Supported currencies in the app
 const SUPPORTED_CURRENCIES = ['USD', 'EUR', 'GBP', 'INR', 'JPY', 'CAD', 'AUD', 'SGD', 'CHF', 'AED'];
@@ -94,6 +98,10 @@ async function extract(req, res, next) {
       exchangeRate,
     });
   } catch (err) {
+    // Give a clear message for missing API key instead of raw SDK error
+    if (err.message?.includes('apiKey') || err.message?.includes('authToken') || err.message?.includes('authentication')) {
+      return res.status(503).json({ error: 'Invoice extraction is not configured. Please contact your administrator to set up the API key.' });
+    }
     next(err);
   }
 }
