@@ -4,8 +4,5 @@ nixPkgs = ["nodejs_20"]
 [phases.install]
 cmds = ["npm install"]
 
-[phases.build]
-cmds = ["npx prisma generate"]
-
 [start]
-cmd = "node src/index.js"
+cmd = "npx prisma generate && npx prisma db push --accept-data-loss && node src/index.js"
