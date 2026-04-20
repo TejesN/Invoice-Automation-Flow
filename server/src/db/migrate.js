@@ -1,6 +1,7 @@
 const { execSync } = require('child_process');
 const path = require('path');
 const fs = require('fs');
+const { seedIfEmpty } = require('./seed');
 
 async function migrate() {
   try {
@@ -17,9 +18,12 @@ async function migrate() {
       cwd: path.join(__dirname, '..', '..'),
     });
 
-    console.log('Database ready.');
+    console.log('Database schema ready.');
+
+    // Seed demo data if the database is empty
+    await seedIfEmpty();
   } catch (err) {
-    console.error('Database migration failed:', err.message);
+    console.error('Database setup failed:', err.message);
     // Don't crash the server — it may still work if DB already exists
   }
 }
