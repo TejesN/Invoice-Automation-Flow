@@ -28,6 +28,9 @@ app.use(cors({
 
 app.use(express.json());
 
+// Health check — Railway uses this to confirm the app is up
+app.get('/health', (req, res) => res.json({ status: 'ok' }));
+
 // Routes
 app.use('/api/invoices', require('./routes/invoices'));
 app.use('/api/payments', require('./routes/payments'));

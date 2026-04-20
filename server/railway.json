@@ -4,8 +4,9 @@
     "builder": "NIXPACKS"
   },
   "deploy": {
-    "startCommand": "npx prisma generate && npx prisma db push && node src/index.js",
-    "healthcheckPath": "/api/dashboard/summary",
+    "startCommand": "mkdir -p data && npx prisma generate && npx prisma db push && node src/index.js",
+    "healthcheckPath": "/health",
+    "healthcheckTimeout": 60,
     "restartPolicyType": "ON_FAILURE"
   }
 }
