@@ -1,12 +1,20 @@
 const { getPrisma } = require('./connection');
 
-async function seedIfEmpty() {
+async function seedIfEmpty({ force = false } = {}) {
   const prisma = getPrisma();
 
   const vendorCount = await prisma.vendor.count();
-  if (vendorCount > 0) {
+  if (vendorCount > 0 && !force) {
     console.log('Database already has data — skipping seed.');
     return;
+  }
+
+  if (force) {
+    console.log('Force reseed — clearing existing data...');
+    await prisma.paymentRequest.deleteMany({});
+    await prisma.payment.deleteMany({});
+    await prisma.invoice.deleteMany({});
+    await prisma.vendor.deleteMany({});
   }
 
   console.log('Empty database detected — seeding demo data...');

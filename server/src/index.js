@@ -31,6 +31,21 @@ app.use(express.json());
 // Health check — Railway uses this to confirm the app is up
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
+// One-time reseed endpoint — protected by RESEED_SECRET env var
+app.post('/admin/reseed', async (req, res) => {
+  const secret = process.env.RESEED_SECRET;
+  if (!secret || req.headers['x-reseed-secret'] !== secret) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+  try {
+    const { seedIfEmpty } = require('./db/seed');
+    await seedIfEmpty({ force: true });
+    res.json({ ok: true, message: 'Database reseeded with demo data.' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Routes
 app.use('/api/invoices', require('./routes/invoices'));
 app.use('/api/payments', require('./routes/payments'));

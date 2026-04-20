@@ -20,8 +20,8 @@ async function migrate() {
 
     console.log('Database schema ready.');
 
-    // Seed demo data if the database is empty
-    await seedIfEmpty();
+    // Seed demo data — force if RESEED=true env var is set
+    await seedIfEmpty({ force: process.env.RESEED === 'true' });
   } catch (err) {
     console.error('Database setup failed:', err.message);
     // Don't crash the server — it may still work if DB already exists
